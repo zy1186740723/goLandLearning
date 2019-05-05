@@ -1,4 +1,4 @@
-package main
+package basic
 
 import "fmt"
 
@@ -9,10 +9,10 @@ import "fmt"
  * @Version 1.0
 */
 func lengthofNoRepeatingSubStr(s string) int {
-	lastOccurred := make(map[byte]int)
+	lastOccurred := make(map[rune]int)
 	start := 0
 	maxLength := 0
-	for i, ch := range []byte(s) {
+	for i, ch := range []rune(s) {
 		lastI, ok := lastOccurred[ch]
 		if ok && lastI >= start {
 			start = lastI + 1
@@ -27,4 +27,5 @@ func lengthofNoRepeatingSubStr(s string) int {
 }
 func main() {
 	fmt.Println(lengthofNoRepeatingSubStr("abcd"))
+	fmt.Println(lengthofNoRepeatingSubStr("张言是网我"))
 }

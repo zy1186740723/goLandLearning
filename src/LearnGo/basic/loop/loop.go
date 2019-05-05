@@ -3,8 +3,10 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"io"
 	"os"
 	"strconv"
+	"strings"
 )
 
 //省略初始条件
@@ -23,11 +25,7 @@ func printFile(filename string) {
 	if err != nil {
 		panic(err)
 	}
-
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		fmt.Println(scanner.Text())
-	}
+	PrintFileContents(file)
 }
 
 //省略结束条件
@@ -36,7 +34,12 @@ func forever() {
 		fmt.Println("abc")
 	}
 }
-
+func PrintFileContents(reader io.Reader) {
+	scanner := bufio.NewScanner(reader)
+	for scanner.Scan() {
+		fmt.Println(scanner.Text())
+	}
+}
 func main() {
 
 	fmt.Println(
@@ -45,5 +48,9 @@ func main() {
 		convertToBin(100),
 		convertToBin(0)) // 1101
 	printFile("abc.txt")
-	forever() //死循环
+	s := `abc"d"
+		pkkkk`
+	PrintFileContents(strings.NewReader(s))
+
+	//forever() //死循环
 }
