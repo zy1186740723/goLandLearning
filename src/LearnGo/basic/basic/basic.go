@@ -39,14 +39,18 @@ func euler() {
 	fmt.Println(cmplx.Pow(math.E, 1i*math.Pi) + 1)
 
 }
+func calcTriangle(a, b int) int {
+	var c int
+	c = int(math.Sqrt(float64(a*a + b*b)))
+	return c
+}
 
 //强制类型转换
 func triangle() {
 	var a, b int = 3, 4
-	var c int
+
 	//进行两次强制类型转换
-	c = int(math.Sqrt(float64(a*a + b*b)))
-	fmt.Println(c)
+	fmt.Println(calcTriangle(a, b))
 
 }
 

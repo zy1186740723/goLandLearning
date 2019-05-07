@@ -1,4 +1,4 @@
-package basic
+package main
 
 import "fmt"
 
@@ -8,13 +8,21 @@ import "fmt"
  * @Date: 2019/5/4 18:24
  * @Version 1.0
 */
+var lastOccurred = make([]int, 0xffff) //65535
 func lengthofNoRepeatingSubStr(s string) int {
-	lastOccurred := make(map[rune]int)
+	//lastOccurred := make(map[rune]int)
+
+	for i := range lastOccurred {
+		lastOccurred[i] = -1
+	}
+	//lastOccurred[0x65]=1//e
+	//lastOccurred[0x8BFE]=6 //课
+
 	start := 0
 	maxLength := 0
 	for i, ch := range []rune(s) {
-		lastI, ok := lastOccurred[ch]
-		if ok && lastI >= start {
+		lastI := lastOccurred[ch]
+		if lastI != -1 && lastI >= start {
 			start = lastI + 1
 		}
 		if i-start+1 > maxLength {

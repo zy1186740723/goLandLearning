@@ -73,7 +73,8 @@ func main() {
 	}
 	fmt.Printf("%T %v\n", r, r)
 	inspect(r)
-	//type assertion
+	//type assertion类型判断
+	//表示将接口类型的值任意转换成实现接口的类型值
 	realRetriever := r.(*real.Retriever)
 	fmt.Println(realRetriever.TimeOut)
 	if mockRetriever, ok := r.(*mock.Retriever); ok {
